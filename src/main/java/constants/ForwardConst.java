@@ -38,7 +38,15 @@ public enum ForwardConst {
     FW_REP_INDEX("reports/index"),
     FW_REP_SHOW("reports/show"),
     FW_REP_NEW("reports/new"),
-    FW_REP_EDIT("reports/edit");
+    FW_REP_EDIT("reports/edit"),
+
+    // jsp追加：フォロワー管理: 追加
+    FW_FOL_INDEX("followers/index"),
+    FW_FOL_SHOW("followers/show"),
+    FW_FOL_NEW("followers/new"),
+    FW_FOL_EDIT("followers/edit");
+
+
 
     /**
      * 文字列

@@ -32,6 +32,18 @@ public enum AttributeConst {
     EMP_NAME("name"),
     EMP_ADMIN_FLG("admin_flag"),
 
+    // フォロー社員日報一覧機能追加オプション
+    // フォロワー管理: 追加
+    FOLLOWER("follower"),
+    FOLLOWERS("followers"),
+    FOL_COUNT("follower_count"),
+    FOL_ID("id"),
+    FOL_CODE("code"),
+    FOL_PASS("password"),
+    FOL_NAME("name"),
+    FOL_ADMIN_FLG("admin_flag"),
+
+
     //管理者フラグ
     ROLE_ADMIN(1),
     ROLE_GENERAL(0),

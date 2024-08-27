@@ -40,9 +40,23 @@ public interface JpaConst {
     String REP_COL_CREATED_AT = "created_at"; //登録日時
     String REP_COL_UPDATED_AT = "updated_at"; //更新日時
 
+    // フォロー社員日報一覧機能追加オプション
+    //フォロワーテーブル：追加
+    String TABLE_FOL = "reports"; //テーブル名
+    //フォロワーテーブルカラム：追加
+    String FOL_COL_ID = "id"; //id
+    String FOL_COL_EMP = "employee_id"; //日報を作成した従業員のid
+    String FOL_COL_REP_DATE = "report_date"; //いつの日報かを示す日付
+    String FOL_COL_TITLE = "title"; //日報のタイトル
+    String FOL_COL_CONTENT = "content"; //日報の内容
+    String FOL_COL_CREATED_AT = "created_at"; //登録日時
+    String FOL_COL_UPDATED_AT = "updated_at"; //更新日時
+
+
     //Entity名
     String ENTITY_EMP = "employee"; //従業員
     String ENTITY_REP = "report"; //日報
+    String ENTITY_FOL = "follower"; //フォロワー:追加
 
     //JPQL内パラメータ
     String JPQL_PARM_CODE = "code"; //社員番号
@@ -74,5 +88,23 @@ public interface JpaConst {
     //指定した従業員が作成した日報の件数を取得する
     String Q_REP_COUNT_ALL_MINE = ENTITY_REP + ".countAllMine";
     String Q_REP_COUNT_ALL_MINE_DEF = "SELECT COUNT(r) FROM Report AS r WHERE r.employee = :" + JPQL_PARM_EMPLOYEE;
+
+    // フォロー社員日報一覧機能追加オプション
+    //全てのフォロワーをidの降順に取得する
+    String Q_FOL_GET_ALL = ENTITY_FOL + ".getAll";
+    String Q_FOL_GET_ALL_DEF = "SELECT r FROM Report AS r ORDER BY r.id DESC";
+    //全てのフォロワーの件数を取得する
+    String Q_FOL_COUNT = ENTITY_FOL + ".count";
+    String Q_FOL_COUNT_DEF = "SELECT COUNT(r) FROM Report AS r";
+    //指定したフォロワーが作成した日報を全件idの降順で取得する
+    String Q_FOL_GET_ALL_MINE = ENTITY_FOL + ".getAllMine";
+    String Q_FOL_GET_ALL_MINE_DEF = "SELECT r FROM Report AS r WHERE r.employee = :" + JPQL_PARM_EMPLOYEE + " ORDER BY r.id DESC";
+    //指定したフォロワーが作成した日報の件数を取得する
+    String Q_FOL_COUNT_ALL_MINE = ENTITY_REP + ".countAllMine";
+    String Q_FOL_COUNT_ALL_MINE_DEF = "SELECT COUNT(r) FROM Report AS r WHERE r.employee = :" + JPQL_PARM_EMPLOYEE;
+
+
+
+
 
 }

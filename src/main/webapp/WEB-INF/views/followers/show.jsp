@@ -27,7 +27,7 @@
                     <fmt:parseDate value="${report.reportDate}" pattern="yyyy-MM-dd" var="reportDay" type="date" />
 
                     <tr class="row${status.count % 2}">
-                        <td class="report_name"><c:out value="${report.follower_employee.name}" /></td>
+                        <td class="report_name"><c:out value="${report.employee.name}" /></td>
                         <td class="report_date"><fmt:formatDate value='${reportDay}' pattern='yyyy-MM-dd' /></td>
                         <td class="report_title">${report.title}</td>
                     </tr>
@@ -44,7 +44,6 @@
                     </c:when>
                     <c:otherwise>
                         <a href="<c:url value='?action=${actFol}&command=${commIdx}&page=${i}' />"><c:out value="${i}" /></a>&nbsp;
-                        <input type="hidden" name="${AttributeConst.TOKEN.getValue()}" value="${_token}" />
                     </c:otherwise>
                 </c:choose>
             </c:forEach>

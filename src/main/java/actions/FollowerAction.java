@@ -88,8 +88,7 @@ public class FollowerAction extends ActionBase {
               //idを条件に従業員データを取得する
               //EmployeeView ev = (EmployeeView) getSessionScope(AttributeConst.EMP_ID);
 
-            EmployeeService service2;
-            service2 = new EmployeeService();
+            EmployeeService service2 = new EmployeeService();
 
            //idを条件に従業員データを取得する
                EmployeeView ev2 = service2.findOne(toNumber(getRequestParam(AttributeConst.EMP_ID)));
@@ -103,11 +102,10 @@ public class FollowerAction extends ActionBase {
                 putRequestScope(AttributeConst.FOLLOWER_EMP, ev2); //取得した従業員情報
 
 
-          //  EmployeeView ev2 = (EmployeeView) getSessionScope(AttributeConst.FOLLOWER_EMP);
 
             //パラメータの値を元に従業員情報のインスタンスを作成する
             FollowerView fv = new FollowerView(
-                    null, //toNumber(getRequestParam(AttributeConst.FOL_ID)),
+                    null,
                     ev1,
                     ev2);
 
@@ -147,21 +145,21 @@ public class FollowerAction extends ActionBase {
     public void show() throws ServletException, IOException {
 
 
-            ReportService service1;
-            service1 = new ReportService();
+            ReportService service1 = new ReportService();
 
 
             //セッションからフォロー中の従業員情報を取得
-            EmployeeView followerEmployee2 = (EmployeeView) getSessionScope(AttributeConst.FOLLOWER_EMP);
+            EmployeeView followerEmployee = (EmployeeView) getSessionScope(AttributeConst.FOLLOWER_EMP);
+
 
           //フォロー中の従業員が作成した日報データを、指定されたページ数の一覧画面に表示する分取得する
             int page = getPage();
-            List<ReportView> reports = service1.getMinePerPage(followerEmployee2, page);
+            List<ReportView> reports = service1.getMinePerPage(followerEmployee, page);
 
 
 
             //フォロー中の従業員が作成した日報データの件数を取得
-            long followerReportsCount = service1.countAllMine(followerEmployee2);
+            long followerReportsCount = service1.countAllMine(followerEmployee);
 
             service1.close();
 

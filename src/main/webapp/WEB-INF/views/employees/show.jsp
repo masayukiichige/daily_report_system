@@ -49,7 +49,7 @@
                     <th>フォロー</th>
                     <td>
                         <c:choose>
-                            <c:when test="${follower_flag}==FALSE">
+                            <c:when test="${follower_flag==AttributeConst.FOL_FLAG_TRUE.getIntegerValue()}">
                                 <a href="<c:url value='?action=${actFol}&command=${commDel}&id=${employee.id}'/>">フォローしない</a>
 
                             </c:when>

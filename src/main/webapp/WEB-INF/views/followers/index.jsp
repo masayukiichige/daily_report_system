@@ -26,17 +26,17 @@
                 </tr>
                 <c:forEach var="follower" items="${followers}" varStatus="status">
                     <tr class="row${status.count % 2}">
-                        <td><c:out value="${follower_employee.code}" /></td>
-                        <td><c:out value="${followerer_employee.name}" /></td>
-                        <td><a href="<c:url value='?action=${actFol}&command=${commShow}&id=${follower.id}' />">詳細を見る</a></td>
+                        <td><c:out value="${followerEmployee.code}" /></td>
+                        <td><c:out value="${followererEmployee.name}" /></td>
+                        <td><a href="<c:url value='?action=${actFol}&command=${commShow}&id=${followerEmployee.id}' />">詳細を見る</a></td>
                     </tr>
                 </c:forEach>
             </tbody>
         </table>
 
         <div id="pagination">
-            （全 ${follower_employees_count} 件）<br />
-            <c:forEach var="i" begin="1" end="${((follower_employees_count - 1) / maxRow) + 1}" step="1">
+            （全 ${follower_count} 件）<br />
+            <c:forEach var="i" begin="1" end="${((follower_count - 1) / maxRow) + 1}" step="1">
                 <c:choose>
                     <c:when test="${i == page}">
                         <c:out value="${i}" />&nbsp;
@@ -47,6 +47,5 @@
                 </c:choose>
             </c:forEach>
         </div>
-    <input type="hidden" name="${AttributeConst.TOKEN.getValue()}" value="${_token}" />
     </c:param>
 </c:import>

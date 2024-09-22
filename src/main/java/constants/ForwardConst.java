@@ -12,6 +12,7 @@ public enum ForwardConst {
     ACT_EMP("Employee"),
     ACT_REP("Report"),
     ACT_AUTH("Auth"),
+    ACT_FOL("Follower"),
 
     //command
     CMD("command"),
@@ -43,8 +44,7 @@ public enum ForwardConst {
     // jsp追加：フォロワー管理: 追加
     FW_FOL_INDEX("followers/index"),
     FW_FOL_SHOW("followers/show"),
-    FW_FOL_NEW("followers/new"),
-    FW_FOL_EDIT("followers/edit");
+    FW_FOL_DESTROY("followers/destroy");
 
 
 

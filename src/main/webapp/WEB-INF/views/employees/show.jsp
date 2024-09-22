@@ -5,8 +5,13 @@
 <%@ page import="constants.AttributeConst" %>
 
 <c:set var="actEmp" value="${ForwardConst.ACT_EMP.getValue()}" />
+<c:set var="actFol" value="${ForwardConst.ACT_FOL.getValue()}" />
+
 <c:set var="commIdx" value="${ForwardConst.CMD_INDEX.getValue()}" />
 <c:set var="commEdit" value="${ForwardConst.CMD_EDIT.getValue()}" />
+<c:set var="commCrt" value="${ForwardConst.CMD_CREATE.getValue()}" />
+<c:set var="commDel" value="${ForwardConst.CMD_DESTROY.getValue()}" />
+
 
 <c:import url="/WEB-INF/views/layout/app.jsp">
     <c:param name="content">
@@ -40,6 +45,22 @@
                     <fmt:parseDate value="${employee.updatedAt}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="updateDay" type="date" />
                     <td><fmt:formatDate value="${updateDay}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
                 </tr>
+                <tr>
+                    <th>フォロー</th>
+                    <td>
+                        <c:choose>
+                            <c:when test="${follower_flag}==FALSE">
+                                <a href="<c:url value='?action=${actFol}&command=${commDel}&id=${employee.id}'/>">フォローしない</a>
+
+                            </c:when>
+                            <c:otherwise>
+                                <a href="<c:url value='?action=${actFol}&command=${commCrt}&id=${employee.id}'/>">フォローする</a>
+
+                            </c:otherwise>
+                        </c:choose>
+                    </td>
+
+                </tr>
             </tbody>
         </table>
 
@@ -50,5 +71,7 @@
         <p>
             <a href="<c:url value='?action=${actEmp}&command=${commIdx}' />">一覧に戻る</a>
         </p>
+        <input type="hidden" name="${AttributeConst.FOL_ID.getValue()}" value="${follower.id}" />
+        <input type="hidden" name="${AttributeConst.TOKEN.getValue()}" value="${_token}" />
     </c:param>
 </c:import>

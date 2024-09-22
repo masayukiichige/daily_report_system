@@ -17,7 +17,7 @@ public enum AttributeConst {
     ERR("errors"),
 
     //ログイン中の従業員
-    LOGIN_EMP("login_employee"),
+    LOGIN_EMP("loginEmployee"),
 
     //ログイン画面
     LOGIN_ERR("loginError"),
@@ -32,18 +32,6 @@ public enum AttributeConst {
     EMP_NAME("name"),
     EMP_ADMIN_FLG("admin_flag"),
 
-    // フォロー社員日報一覧機能追加オプション
-    // フォロワー管理: 追加
-    FOLLOWER("follower"),
-    FOLLOWERS("followers"),
-    FOL_COUNT("follower_count"),
-    FOL_ID("id"),
-    FOL_CODE("code"),
-    FOL_PASS("password"),
-    FOL_NAME("name"),
-    FOL_ADMIN_FLG("admin_flag"),
-
-
     //管理者フラグ
     ROLE_ADMIN(1),
     ROLE_GENERAL(0),
@@ -52,6 +40,12 @@ public enum AttributeConst {
     DEL_FLAG_TRUE(1),
     DEL_FLAG_FALSE(0),
 
+    // フォローフラグ
+    FOL_FLG("follower_flag"),
+    FOL_FLAG_TRUE(1),
+    FOL_FLAG_FALSE(0),
+
+
     //日報管理
     REPORT("report"),
     REPORTS("reports"),
@@ -59,7 +53,19 @@ public enum AttributeConst {
     REP_ID("id"),
     REP_DATE("report_date"),
     REP_TITLE("title"),
-    REP_CONTENT("content_msg");
+    REP_CONTENT("content_msg"),
+
+ // フォロー社員日報一覧機能追加オプション
+    // フォロワー管理: 追加
+    FOLLOWER("follower"),
+    FOLLOWERS("followers"),
+    FOL_COUNT("follower_count"),
+    FOL_ID("id"),
+
+    // フォローされた従業員
+    FOLLOWER_EMP("followerEmployee");
+
+
 
     private final String text;
     private final Integer i;

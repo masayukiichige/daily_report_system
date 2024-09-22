@@ -24,10 +24,14 @@ public interface JpaConst {
     String EMP_COL_UPDATED_AT = "updated_at"; //更新日時
     String EMP_COL_DELETE_FLAG = "delete_flag"; //削除フラグ
 
+
     int ROLE_ADMIN = 1; //管理者権限ON(管理者)
     int ROLE_GENERAL = 0; //管理者権限OFF(一般)
     int EMP_DEL_TRUE = 1; //削除フラグON(削除済み)
     int EMP_DEL_FALSE = 0; //削除フラグOFF(現役)
+    int EMP_FOL_TRUE = 1; //フォローフラグON(フォローする)
+    int EMP_FOL_FALSE = 0; //フォローフラグOFF(フォローしない)
+
 
     //日報テーブル
     String TABLE_REP = "reports"; //テーブル名
@@ -42,15 +46,11 @@ public interface JpaConst {
 
     // フォロー社員日報一覧機能追加オプション
     //フォロワーテーブル：追加
-    String TABLE_FOL = "reports"; //テーブル名
+    String TABLE_FOL = "followers"; //テーブル名
     //フォロワーテーブルカラム：追加
     String FOL_COL_ID = "id"; //id
-    String FOL_COL_EMP = "employee_id"; //日報を作成した従業員のid
-    String FOL_COL_REP_DATE = "report_date"; //いつの日報かを示す日付
-    String FOL_COL_TITLE = "title"; //日報のタイトル
-    String FOL_COL_CONTENT = "content"; //日報の内容
-    String FOL_COL_CREATED_AT = "created_at"; //登録日時
-    String FOL_COL_UPDATED_AT = "updated_at"; //更新日時
+    String FOL_COL_LOGIN_EMP = "loginEmployee"; //ログインした従業員
+    String FOL_COL_FOLLOWER_EMP = "followerEmployee"; //フォローされた従業員
 
 
     //Entity名
@@ -62,6 +62,9 @@ public interface JpaConst {
     String JPQL_PARM_CODE = "code"; //社員番号
     String JPQL_PARM_PASSWORD = "password"; //パスワード
     String JPQL_PARM_EMPLOYEE = "employee"; //従業員
+    String JPQL_PARM_FOLLOWER = "followerEmployee"; //フォロワー
+    String JPQL_PARM_LOGIN_EMP = "loginEmployee"; //ログイン従業員
+
 
     //NamedQueryの nameとquery
     //全ての従業員をidの降順に取得する
@@ -76,6 +79,7 @@ public interface JpaConst {
     //指定した社員番号を保持する従業員の件数を取得する
     String Q_EMP_COUNT_REGISTERED_BY_CODE = ENTITY_EMP + ".countRegisteredByCode";
     String Q_EMP_COUNT_REGISTERED_BY_CODE_DEF = "SELECT COUNT(e) FROM Employee AS e WHERE e.code = :" + JPQL_PARM_CODE;
+
     //全ての日報をidの降順に取得する
     String Q_REP_GET_ALL = ENTITY_REP + ".getAll";
     String Q_REP_GET_ALL_DEF = "SELECT r FROM Report AS r ORDER BY r.id DESC";
@@ -92,16 +96,16 @@ public interface JpaConst {
     // フォロー社員日報一覧機能追加オプション
     //全てのフォロワーをidの降順に取得する
     String Q_FOL_GET_ALL = ENTITY_FOL + ".getAll";
-    String Q_FOL_GET_ALL_DEF = "SELECT r FROM Report AS r ORDER BY r.id DESC";
+    String Q_FOL_GET_ALL_DEF = "SELECT f FROM Follower AS f ORDER BY f.id DESC";
     //全てのフォロワーの件数を取得する
     String Q_FOL_COUNT = ENTITY_FOL + ".count";
-    String Q_FOL_COUNT_DEF = "SELECT COUNT(r) FROM Report AS r";
+    String Q_FOL_COUNT_DEF = "SELECT COUNT(f) FROM Follower AS f";
     //指定したフォロワーが作成した日報を全件idの降順で取得する
     String Q_FOL_GET_ALL_MINE = ENTITY_FOL + ".getAllMine";
-    String Q_FOL_GET_ALL_MINE_DEF = "SELECT r FROM Report AS r WHERE r.employee = :" + JPQL_PARM_EMPLOYEE + " ORDER BY r.id DESC";
+    String Q_FOL_GET_ALL_MINE_DEF = "SELECT f FROM Follower AS f WHERE f.loginEmployee = :" + JPQL_PARM_LOGIN_EMP + " ORDER BY f.id DESC";
     //指定したフォロワーが作成した日報の件数を取得する
-    String Q_FOL_COUNT_ALL_MINE = ENTITY_REP + ".countAllMine";
-    String Q_FOL_COUNT_ALL_MINE_DEF = "SELECT COUNT(r) FROM Report AS r WHERE r.employee = :" + JPQL_PARM_EMPLOYEE;
+    String Q_FOL_COUNT_ALL_MINE = ENTITY_FOL + ".countAllMine";
+    String Q_FOL_COUNT_ALL_MINE_DEF = "SELECT COUNT(f) FROM Follower AS f WHERE f.loginEmployee = :" + JPQL_PARM_LOGIN_EMP;
 
 
 

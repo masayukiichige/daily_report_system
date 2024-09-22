@@ -12,6 +12,7 @@ import constants.AttributeConst;
 import constants.ForwardConst;
 import constants.JpaConst;
 import constants.MessageConst;
+import services.EmployeeService;
 import services.FollowerService;
 import services.ReportService;
 
@@ -82,22 +83,31 @@ public class FollowerAction extends ActionBase {
             //セッションからログイン中の従業員情報を取得
             EmployeeView ev1 = (EmployeeView) getSessionScope(AttributeConst.LOGIN_EMP);
 
+
           //セッションからフォローされた従業員情報を取得
               //idを条件に従業員データを取得する
-                EmployeeView ev = (EmployeeView) getSessionScope(AttributeConst.EMP_ID);
-                if (ev == null || ev.getDeleteFlag() == AttributeConst.DEL_FLAG_TRUE.getIntegerValue()) {
+              //EmployeeView ev = (EmployeeView) getSessionScope(AttributeConst.EMP_ID);
+
+            EmployeeService service2;
+            service2 = new EmployeeService();
+
+           //idを条件に従業員データを取得する
+               EmployeeView ev2 = service2.findOne(toNumber(getRequestParam(AttributeConst.EMP_ID)));
+               service2.close();
+
+                if (ev2 == null || ev2.getDeleteFlag() == AttributeConst.DEL_FLAG_TRUE.getIntegerValue()) {
                     //データが取得できなかった、または論理削除されている場合はエラー画面を表示
                                    forward(ForwardConst.FW_ERR_UNKNOWN);
                     return;
                 }
-                putRequestScope(AttributeConst.FOLLOWER_EMP, ev); //取得した従業員情報
+                putRequestScope(AttributeConst.FOLLOWER_EMP, ev2); //取得した従業員情報
 
 
-            EmployeeView ev2 = (EmployeeView) getSessionScope(AttributeConst.FOLLOWER_EMP);
+          //  EmployeeView ev2 = (EmployeeView) getSessionScope(AttributeConst.FOLLOWER_EMP);
 
             //パラメータの値を元に従業員情報のインスタンスを作成する
             FollowerView fv = new FollowerView(
-                    toNumber(getRequestParam(AttributeConst.FOL_ID)),
+                    null, //toNumber(getRequestParam(AttributeConst.FOL_ID)),
                     ev1,
                     ev2);
 

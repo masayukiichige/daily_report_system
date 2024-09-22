@@ -71,7 +71,5 @@
         <p>
             <a href="<c:url value='?action=${actEmp}&command=${commIdx}' />">一覧に戻る</a>
         </p>
-        <input type="hidden" name="${AttributeConst.FOL_ID.getValue()}" value="${follower.id}" />
-        <input type="hidden" name="${AttributeConst.TOKEN.getValue()}" value="${_token}" />
     </c:param>
 </c:import>

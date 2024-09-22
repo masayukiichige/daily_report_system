@@ -43,14 +43,14 @@ public class TopAction extends ActionBase {
         // 以下追記
 
         //セッションからログイン中の従業員情報を取得
-        EmployeeView loginEmployee1 = (EmployeeView) getSessionScope(AttributeConst.LOGIN_EMP);
+        EmployeeView loginEmployee = (EmployeeView) getSessionScope(AttributeConst.LOGIN_EMP);
 
         //ログイン中の従業員が作成した日報データを、指定されたページ数の一覧画面に表示する分取得する
         int page = getPage();
-        List<ReportView> reports = service.getMinePerPage(loginEmployee1, page);
+        List<ReportView> reports = service.getMinePerPage(loginEmployee, page);
 
         //ログイン中の従業員が作成した日報データの件数を取得
-        long myReportsCount = service.countAllMine(loginEmployee1);
+        long myReportsCount = service.countAllMine(loginEmployee);
 
         putRequestScope(AttributeConst.REPORTS, reports); //取得した日報データ
         putRequestScope(AttributeConst.REP_COUNT, myReportsCount); //ログイン中の従業員が作成した日報の数

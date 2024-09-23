@@ -79,20 +79,13 @@ public class FollowerAction extends ActionBase {
      */
     public void create() throws ServletException, IOException {
 
-
             //セッションからログイン中の従業員情報を取得
             EmployeeView ev1 = (EmployeeView) getSessionScope(AttributeConst.LOGIN_EMP);
 
-
-          //セッションからフォローされた従業員情報を取得
-              //idを条件に従業員データを取得する
-              //EmployeeView ev = (EmployeeView) getSessionScope(AttributeConst.EMP_ID);
-
-            EmployeeService service2 = new EmployeeService();
-
            //idを条件に従業員データを取得する
-               EmployeeView ev2 = service2.findOne(toNumber(getRequestParam(AttributeConst.EMP_ID)));
-               service2.close();
+            EmployeeService service2 = new EmployeeService();
+            EmployeeView ev2 = service2.findOne(toNumber(getRequestParam(AttributeConst.EMP_ID)));
+            service2.close();
 
                 if (ev2 == null || ev2.getDeleteFlag() == AttributeConst.DEL_FLAG_TRUE.getIntegerValue()) {
                     //データが取得できなかった、または論理削除されている場合はエラー画面を表示
@@ -110,9 +103,10 @@ public class FollowerAction extends ActionBase {
                     ev2);
 
           //フォロー情報登録
-            List<String> errors = service.create(fv);
+//          List<String> errors = service.create(fv);
+            service.create(fv);
 
-            if (errors.size() > 0) {
+         /*   if (errors.size() > 0) {
                 //登録中にエラーがあった場合
 
                 putRequestScope(AttributeConst.TOKEN, getTokenId()); //CSRF対策用トークン
@@ -124,7 +118,7 @@ public class FollowerAction extends ActionBase {
 
             } else {
                 //登録中にエラーがなかった場合
-
+        */
                 //セッションに登録完了のフラッシュメッセージを設定
                 putSessionScope(AttributeConst.FLUSH, MessageConst.I_REGISTERED.getMessage());
 
@@ -134,7 +128,7 @@ public class FollowerAction extends ActionBase {
                 //一覧画面にリダイレクト
                 redirect(ForwardConst.ACT_EMP, ForwardConst.FW_EMP_SHOW);
 
-            }
+          //  }
 
     }
     /**
@@ -145,12 +139,15 @@ public class FollowerAction extends ActionBase {
     public void show() throws ServletException, IOException {
 
 
-            ReportService service1 = new ReportService();
+        ReportService service1 = new ReportService();
+
+        EmployeeService service2 = new EmployeeService();
 
 
-            //セッションからフォロー中の従業員情報を取得
-            EmployeeView followerEmployee = (EmployeeView) getSessionScope(AttributeConst.FOLLOWER_EMP);
+            //idを条件に従業員データを取得する
+            EmployeeView followerEmployee = service2.findOne(toNumber(getRequestParam(AttributeConst.FOL_ID)));
 
+            service2.close();
 
           //フォロー中の従業員が作成した日報データを、指定されたページ数の一覧画面に表示する分取得する
             int page = getPage();

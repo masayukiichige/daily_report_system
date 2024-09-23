@@ -55,7 +55,8 @@
                 </c:choose>
             </c:forEach>
         </div>
-        <p><a href="<c:url value='?action=${actEmp}&command=${commNew}' />">新規従業員の登録</a></p>
-
+        <c:if test="${sessionScope.loginEmployee.adminFlag == AttributeConst.ROLE_ADMIN.getIntegerValue()}">
+            <p><a href="<c:url value='?action=${actEmp}&command=${commNew}' />">新規従業員の登録</a></p>
+        </c:if>
     </c:param>
 </c:import>

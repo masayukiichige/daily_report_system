@@ -63,11 +63,11 @@
                 </tr>
             </tbody>
         </table>
-
+    <c:if test="${sessionScope.loginEmployee.adminFlag == AttributeConst.ROLE_ADMIN.getIntegerValue()}">
         <p>
             <a href="<c:url value='?action=${actEmp}&command=${commEdit}&id=${employee.id}' />">この従業員情報を編集する</a>
         </p>
-
+    </c:if>
         <p>
             <a href="<c:url value='?action=${actEmp}&command=${commIdx}' />">一覧に戻る</a>
         </p>

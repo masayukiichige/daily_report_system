@@ -16,7 +16,7 @@ public class FollowerService extends ServiceBase {
 
     /**
      * フォローする従業員がフォローされた従業員データを、指定されたページ数の一覧画面に表示する分取得しFollowerViewのリストで返却する
-     * @param follower_employee フォローされた従業員
+     * @param followerEmployee フォローされた従業員
      * @param page ページ数
      * @return 一覧画面に表示するデータのリスト
      */

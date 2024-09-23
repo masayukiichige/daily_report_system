@@ -83,10 +83,9 @@ public class FollowerService extends ServiceBase {
      * @param fv フォロワー登録内容
      * @return バリデーションで発生したエラーのリスト
      */
-    public List<String> create(FollowerView fv) {
+    public void create(FollowerView fv) {
             createInternal(fv);
 
-            return null;
     }
 
     /**

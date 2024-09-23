@@ -103,32 +103,16 @@ public class FollowerAction extends ActionBase {
                     ev2);
 
           //フォロー情報登録
-//          List<String> errors = service.create(fv);
             service.create(fv);
 
-         /*   if (errors.size() > 0) {
-                //登録中にエラーがあった場合
-
-                putRequestScope(AttributeConst.TOKEN, getTokenId()); //CSRF対策用トークン
-                putRequestScope(AttributeConst.FOLLOWER, fv);//入力されたフォロワー情報
-                putRequestScope(AttributeConst.ERR, errors);//エラーのリスト
-
-                //新規登録画面を再表示
-                forward(ForwardConst.FW_EMP_INDEX);
-
-            } else {
-                //登録中にエラーがなかった場合
-        */
                 //セッションに登録完了のフラッシュメッセージを設定
-                putSessionScope(AttributeConst.FLUSH, MessageConst.I_REGISTERED.getMessage());
+                //putSessionScope(AttributeConst.FLUSH, MessageConst.I_REGISTERED.getMessage());
 
-             // フォローフラグをTRUEにする
+                // フォローフラグをTRUEにする
                 putRequestScope(AttributeConst.FOL_FLG, AttributeConst.FOL_FLAG_TRUE);
 
                 //一覧画面にリダイレクト
                 redirect(ForwardConst.ACT_EMP, ForwardConst.FW_EMP_SHOW);
-
-          //  }
 
     }
     /**

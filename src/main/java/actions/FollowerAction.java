@@ -112,7 +112,7 @@ public class FollowerAction extends ActionBase {
                 putRequestScope(AttributeConst.FOL_FLG, AttributeConst.FOL_FLAG_TRUE);
 
                 //一覧画面にリダイレクト
-                redirect(ForwardConst.ACT_EMP, ForwardConst.FW_EMP_SHOW);
+                redirect(ForwardConst.ACT_EMP, ForwardConst.CMD_INDEX);
 
     }
     /**
@@ -188,7 +188,7 @@ public class FollowerAction extends ActionBase {
                 // フォローフラグをFALSEにする
                 putRequestScope(AttributeConst.FOL_FLG, AttributeConst.FOL_FLAG_FALSE);
                 //一覧画面にリダイレクト
-                redirect(ForwardConst.ACT_EMP, ForwardConst.FW_EMP_SHOW);
+                redirect(ForwardConst.ACT_EMP, ForwardConst.CMD_INDEX);
 
 
         }

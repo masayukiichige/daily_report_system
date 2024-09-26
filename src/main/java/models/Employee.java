@@ -34,7 +34,10 @@ import lombok.Setter;
             query = JpaConst.Q_EMP_COUNT_REGISTERED_BY_CODE_DEF),
     @NamedQuery(
             name = JpaConst.Q_EMP_GET_BY_CODE_AND_PASS,
-            query = JpaConst.Q_EMP_GET_BY_CODE_AND_PASS_DEF)
+            query = JpaConst.Q_EMP_GET_BY_CODE_AND_PASS_DEF),
+    @NamedQuery(
+            name =  JpaConst.Q_FOL_COUNT_FOL_MINE,
+            query =  JpaConst.Q_FOL_COUNT_FOL_MINE_DEF)
 })
 
 @Getter //全てのクラスフィールドについてgetterを自動生成する(Lombok)

@@ -29,8 +29,9 @@ public interface JpaConst {
     int ROLE_GENERAL = 0; //管理者権限OFF(一般)
     int EMP_DEL_TRUE = 1; //削除フラグON(削除済み)
     int EMP_DEL_FALSE = 0; //削除フラグOFF(現役)
-    int EMP_FOL_TRUE = 1; //フォローフラグON(フォローする)
-    int EMP_FOL_FALSE = 0; //フォローフラグOFF(フォローしない)
+
+    int FOL_FLG_TRUE = 1;//フォローフラグON(フォローする)
+    int FOL_FLG_FALSE = 0;//フォローフラグOFF(フォローしない)
 
 
     //日報テーブル
@@ -100,15 +101,16 @@ public interface JpaConst {
     //全てのフォロワーの件数を取得する
     String Q_FOL_COUNT = ENTITY_FOL + ".count";
     String Q_FOL_COUNT_DEF = "SELECT COUNT(f) FROM Follower AS f";
-    //指定したフォロワーが作成した日報を全件idの降順で取得する
+    //ログインした社員がフォローした社員の全件idの降順で取得する
     String Q_FOL_GET_ALL_MINE = ENTITY_FOL + ".getAllMine";
     String Q_FOL_GET_ALL_MINE_DEF = "SELECT f FROM Follower AS f WHERE f.loginEmployee = :" + JPQL_PARM_LOGIN_EMP + " ORDER BY f.id DESC";
-    //指定したフォロワーが作成した日報の件数を取得する
+    //ログインした社員がフォローした社員の件数を取得する
     String Q_FOL_COUNT_ALL_MINE = ENTITY_FOL + ".countAllMine";
     String Q_FOL_COUNT_ALL_MINE_DEF = "SELECT COUNT(f) FROM Follower AS f WHERE f.loginEmployee = :" + JPQL_PARM_LOGIN_EMP;
 
-
-
+    //ログインした社員がフォローした従業員の中にいる指定した社員の件数を取得する
+    String Q_FOL_COUNT_FOL_MINE = ENTITY_FOL + ".countFollowerMine";
+    String Q_FOL_COUNT_FOL_MINE_DEF = "SELECT COUNT(f) FROM Follower AS f WHERE f.loginEmployee = :" + JPQL_PARM_LOGIN_EMP + " AND f.followerEmployee = :" + JPQL_PARM_FOLLOWER;
 
 
 }

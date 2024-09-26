@@ -93,6 +93,23 @@ public class EmployeeService extends ServiceBase {
     }
 
     /**
+     * 指定した社員を条件に該当するデータの件数を取得し、返却する
+     * @param loginEmployeeログインした従業員, evフォローした従業員
+     * @return 該当するデータの件数
+     */
+    public long countFollowerMine(EmployeeView loginEmployee, EmployeeView ev) {
+
+        //ログインした社員がフォローした従業員の中にいる指定した社員の件数を取得する
+        long count = (long) em.createNamedQuery(JpaConst.Q_FOL_COUNT_FOL_MINE, Long.class)
+                .setParameter(JpaConst.JPQL_PARM_LOGIN_EMP,EmployeeConverter.toModel(loginEmployee))
+                .setParameter(JpaConst.JPQL_PARM_FOLLOWER, EmployeeConverter.toModel(ev))
+                .getSingleResult();
+        return count;
+    }
+
+
+
+    /**
      * 画面から入力された従業員の登録内容を元にデータを1件作成し、従業員テーブルに登録する
      * @param ev 画面から入力された従業員の登録内容
      * @param pepper pepper文字列
@@ -254,5 +271,7 @@ public class EmployeeService extends ServiceBase {
         em.getTransaction().commit();
 
     }
+
+
 
 }

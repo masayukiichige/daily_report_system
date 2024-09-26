@@ -92,7 +92,7 @@ public class FollowerAction extends ActionBase {
                                    forward(ForwardConst.FW_ERR_UNKNOWN);
                     return;
                 }
-                putRequestScope(AttributeConst.FOLLOWER_EMP, ev2); //取得した従業員情報
+               // putRequestScope(AttributeConst.FOLLOWER_EMP, ev2); //取得した従業員情報
 
 
 
@@ -108,11 +108,8 @@ public class FollowerAction extends ActionBase {
                 //セッションに登録完了のフラッシュメッセージを設定
                 //putSessionScope(AttributeConst.FLUSH, MessageConst.I_REGISTERED.getMessage());
 
-                // フォローフラグをTRUEにする
-                putRequestScope(AttributeConst.FOL_FLG, AttributeConst.FOL_FLAG_TRUE);
-
                 //一覧画面にリダイレクト
-                redirect(ForwardConst.ACT_EMP, ForwardConst.CMD_INDEX);
+                redirect(ForwardConst.ACT_FOL, ForwardConst.CMD_INDEX);
 
     }
     /**
@@ -185,10 +182,10 @@ public class FollowerAction extends ActionBase {
                 //セッションに削除完了のフラッシュメッセージを設定
                 putSessionScope(AttributeConst.FLUSH, MessageConst.I_DELETED.getMessage());
 
-                // フォローフラグをFALSEにする
-                putRequestScope(AttributeConst.FOL_FLG, AttributeConst.FOL_FLAG_FALSE);
+                
+
                 //一覧画面にリダイレクト
-                redirect(ForwardConst.ACT_EMP, ForwardConst.CMD_INDEX);
+                redirect(ForwardConst.ACT_FOL, ForwardConst.CMD_INDEX);
 
 
         }

@@ -28,7 +28,7 @@
                     <tr class="row${status.count % 2}">
                         <td><c:out value="${follower.followerEmployee.code}" /></td>
                         <td><c:out value="${follower.followerEmployee.name}" /></td>
-                        <td><a href="<c:url value='?action=${actFol}&command=${commShow}&id=${follower.id}' />">詳細を見る</a></td>
+                        <td><a href="<c:url value='?action=${actFol}&command=${commShow}&id=${follower.followerEmployee.id}' />">詳細を見る</a></td>
                     </tr>
                 </c:forEach>
             </tbody>

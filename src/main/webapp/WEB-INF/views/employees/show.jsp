@@ -47,15 +47,15 @@
                 </tr>
                 <tr>
                     <th>フォロー</th>
-                    <td>
+                     <td>
                         <c:choose>
-                            <c:when test="${loginEmployee.id} == ${employee.id}}">
+                            <c:when test="${sessionScope.loginEmployee.id == employee.id}"><p>---</p>
                             </c:when>
-                            <c:when test="${requestScope.follower_flag==AttributeConst.FOL_FLAG_TRUE.getIntegerValue()}">
+                             <c:when test="${follower_flag == AttributeConst.FOL_FLAG_TRUE.getIntegerValue()}">
                                 <a href="<c:url value='?action=${actFol}&command=${commDel}&id=${employee.id}'/>">フォローしない</a>
                             </c:when>
                             <c:otherwise>
-                                    <a href="<c:url value='?action=${actFol}&command=${commCrt}&id=${employee.id}'/>">フォローする</a>
+                                <a href="<c:url value='?action=${actFol}&command=${commCrt}&id=${employee.id}'/>">フォローする</a>
                             </c:otherwise>
                         </c:choose>
                     </td>

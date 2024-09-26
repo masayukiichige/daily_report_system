@@ -13,6 +13,8 @@ import constants.MessageConst;
 import constants.PropertyConst;
 import services.EmployeeService;
 
+
+
 /**
  * 従業員に関わる処理を行うActionクラス
  *
@@ -146,6 +148,20 @@ public class EmployeeAction extends ActionBase {
         }
 
         putRequestScope(AttributeConst.EMPLOYEE, ev); //取得した従業員情報
+
+      //セッションからログイン中の従業員情報を取得
+        EmployeeView loginEmployee = (EmployeeView) getSessionScope(AttributeConst.LOGIN_EMP);
+
+        long count = service.countFollowerMine(loginEmployee, ev);
+        if(count > 0) {
+            // フォローフラグをTRUE(1)にする
+            putRequestScope(AttributeConst.FOL_FLG, AttributeConst.FOL_FLAG_TRUE.getIntegerValue());
+        } else {
+            // フォローフラグをFALSE(0)にする
+            putRequestScope(AttributeConst.FOL_FLG, AttributeConst.FOL_FLAG_FALSE.getIntegerValue());
+        }
+
+
 
         //詳細画面を表示
         forward(ForwardConst.FW_EMP_SHOW);

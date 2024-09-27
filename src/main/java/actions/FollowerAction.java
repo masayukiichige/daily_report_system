@@ -17,7 +17,7 @@ import services.FollowerService;
 import services.ReportService;
 
 /**
- * フォローされた日報に関する処理を行うActionクラス
+ * フォローされた従業員に関する処理を行うActionクラス
  *
  */
 public class FollowerAction extends ActionBase {
@@ -160,8 +160,7 @@ public class FollowerAction extends ActionBase {
 
 
     /**
-     * フォローされた従業員かどうかチェックし、フォローされた従業員でなければエラー画面を表示
-     * true: フォローされた従業員 false: フォローされた従業員ではない
+     * フォローされた従業員をフォローしなくする場合にその従業員をテーブルから削除する。
      * @throws ServletException
      * @throws IOException
      */
@@ -182,7 +181,7 @@ public class FollowerAction extends ActionBase {
                 //セッションに削除完了のフラッシュメッセージを設定
                 putSessionScope(AttributeConst.FLUSH, MessageConst.I_DELETED.getMessage());
 
-                
+
 
                 //一覧画面にリダイレクト
                 redirect(ForwardConst.ACT_FOL, ForwardConst.CMD_INDEX);

@@ -10,7 +10,7 @@ import constants.JpaConst;
 import models.Follower;
 
 /**
- * フォロワーテーブルの操作に関わる処理を行うクラス
+ * フォローテーブルの操作に関わる処理を行うクラス
  */
 public class FollowerService extends ServiceBase {
 
@@ -60,7 +60,7 @@ public class FollowerService extends ServiceBase {
     }
 
     /**
-     * フォロワーテーブルのデータの件数を取得し、返却する
+     * フォローテーブルのデータの件数を取得し、返却する
      * @return データの件数
      */
     public long countAll() {
@@ -79,8 +79,8 @@ public class FollowerService extends ServiceBase {
     }
 
     /**
-     * フォローされた従業員のデータを1件作成し、フォロワーテーブルに登録する
-     * @param fv フォロワー登録内容
+     * フォローされた従業員のデータを1件作成し、フォローテーブルに登録する
+     * @param fv フォロー登録内容
      * @return バリデーションで発生したエラーのリスト
      */
     public void create(FollowerView fv) {
@@ -90,7 +90,7 @@ public class FollowerService extends ServiceBase {
 
     /**
      * フォローされた従業員のデータを更新する
-     * @param rv フォロワーの更新内容
+     * @param rv フォローの更新内容
      * @return バリデーションで発生したエラーのリスト
      */
 
@@ -105,8 +105,8 @@ public class FollowerService extends ServiceBase {
     }
 
     /**
-     * フォロワーデータを1件登録する
-     * @param fv フォロワーデータ
+     * フォローデータを1件登録する
+     * @param fv フォローデータ
      */
     private void createInternal(FollowerView fv) {
 
@@ -117,8 +117,8 @@ public class FollowerService extends ServiceBase {
     }
 
     /**
-     * フォローされた従業員のデータを1件削除し、フォロワーテーブルから削除する
-     * @param fv フォロワー登録内容
+     * フォローされた従業員のデータを1件削除し、フォローテーブルから削除する
+     * @param fv フォロー登録内容
      * @return バリデーションで発生したエラーのリスト
      */
     public void destroy(FollowerView fv) {
@@ -130,8 +130,8 @@ public class FollowerService extends ServiceBase {
 
 
     /**
-     * フォロワーデータを1件削除する
-     * @param fv フォロワーデータ
+     * フォローデータを1件削除する
+     * @param fv フォローデータ
      */
     private void destroyInternal(Follower f) {
 

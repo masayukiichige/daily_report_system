@@ -45,7 +45,7 @@ public interface JpaConst {
     String REP_COL_CREATED_AT = "created_at"; //登録日時
     String REP_COL_UPDATED_AT = "updated_at"; //更新日時
 
-    // フォロー社員日報一覧機能追加オプション
+    // フォロー従業員一覧機能追加オプション
     //フォロワーテーブル：追加
     String TABLE_FOL = "followers"; //テーブル名
     //フォロワーテーブルカラム：追加
@@ -95,20 +95,20 @@ public interface JpaConst {
     String Q_REP_COUNT_ALL_MINE_DEF = "SELECT COUNT(r) FROM Report AS r WHERE r.employee = :" + JPQL_PARM_EMPLOYEE;
 
     // フォロー社員日報一覧機能追加オプション
-    //全てのフォロワーをidの降順に取得する
+    //全てのフォロー従業員をidの降順に取得する
     String Q_FOL_GET_ALL = ENTITY_FOL + ".getAll";
     String Q_FOL_GET_ALL_DEF = "SELECT f FROM Follower AS f ORDER BY f.id DESC";
-    //全てのフォロワーの件数を取得する
+    //全てのフォロー従業員の件数を取得する
     String Q_FOL_COUNT = ENTITY_FOL + ".count";
     String Q_FOL_COUNT_DEF = "SELECT COUNT(f) FROM Follower AS f";
-    //ログインした社員がフォローした社員の全件idの降順で取得する
+    //ログインした従業員がフォローした従業員の全件idの降順で取得する
     String Q_FOL_GET_ALL_MINE = ENTITY_FOL + ".getAllMine";
     String Q_FOL_GET_ALL_MINE_DEF = "SELECT f FROM Follower AS f WHERE f.loginEmployee = :" + JPQL_PARM_LOGIN_EMP + " ORDER BY f.id DESC";
     //ログインした社員がフォローした社員の件数を取得する
     String Q_FOL_COUNT_ALL_MINE = ENTITY_FOL + ".countAllMine";
     String Q_FOL_COUNT_ALL_MINE_DEF = "SELECT COUNT(f) FROM Follower AS f WHERE f.loginEmployee = :" + JPQL_PARM_LOGIN_EMP;
 
-    //ログインした社員がフォローした従業員の中にいる指定した社員の件数を取得する
+    //ログインした従業員がフォローした従業員中の指定従業員の件数を取得する
     String Q_FOL_COUNT_FOL_MINE = ENTITY_FOL + ".countFollowerMine";
     String Q_FOL_COUNT_FOL_MINE_DEF = "SELECT COUNT(f) FROM Follower AS f WHERE f.loginEmployee = :" + JPQL_PARM_LOGIN_EMP + " AND f.followerEmployee = :" + JPQL_PARM_FOLLOWER;
 

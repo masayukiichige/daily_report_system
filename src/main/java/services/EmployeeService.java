@@ -94,7 +94,7 @@ public class EmployeeService extends ServiceBase {
 
     /**
      * 指定した社員を条件に該当するデータの件数を取得し、返却する
-     * @param loginEmployeeログインした従業員, evフォローした従業員
+     * @param loginEmployeeログインした従業員, evフォロー従業員
      * @return 該当するデータの件数
      */
     public long countFollowerMine(EmployeeView loginEmployee, EmployeeView ev) {

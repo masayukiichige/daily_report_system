@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
- * フォロワーのDTOモデル
+ * フォロー従業員のDTOモデル
  *
  */
 @Table(name = JpaConst.TABLE_FOL)

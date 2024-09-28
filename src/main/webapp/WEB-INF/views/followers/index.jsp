@@ -35,8 +35,8 @@
         </table>
 
         <div id="pagination">
-            （全 ${follower_count} 件）<br />
-            <c:forEach var="i" begin="1" end="${((follower_count - 1) / maxRow) + 1}" step="1">
+            （全 ${followers_count} 件）<br />
+            <c:forEach var="i" begin="1" end="${((followers_count - 1) / maxRow) + 1}" step="1">
                 <c:choose>
                     <c:when test="${i == page}">
                         <c:out value="${i}" />&nbsp;

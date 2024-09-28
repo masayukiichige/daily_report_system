@@ -59,7 +59,7 @@ public enum AttributeConst {
     // フォロワー管理: 追加
     FOLLOWER("follower"),
     FOLLOWERS("followers"),
-    FOL_COUNT("follower_count"),
+    FOL_COUNT("followers_count"),
     FOL_ID("id"),
 
     // フォローされた従業員

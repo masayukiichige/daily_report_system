@@ -2,6 +2,8 @@ package services;
 
 import java.util.List;
 
+import javax.persistence.NoResultException;
+
 import actions.views.EmployeeConverter;
 import actions.views.EmployeeView;
 import actions.views.FollowerConverter;
@@ -70,7 +72,7 @@ public class FollowerService extends ServiceBase {
     }
 
     /**
-     * idを条件に取得したデータをReportViewのインスタンスで返却する
+     * idを条件に取得したデータをFollowerViewのインスタンスで返却する
      * @param id
      * @return 取得データのインスタンス
      */
@@ -122,9 +124,8 @@ public class FollowerService extends ServiceBase {
      * @return バリデーションで発生したエラーのリスト
      */
     public void destroy(FollowerView fv) {
-        Follower f = findOneInternal(fv.getId());
 
-        destroyInternal(f);
+        destroyInternal(fv);
 
     }
 
@@ -133,12 +134,35 @@ public class FollowerService extends ServiceBase {
      * フォローデータを1件削除する
      * @param fv フォローデータ
      */
-    private void destroyInternal(Follower f) {
-
+    private void destroyInternal(FollowerView fv) {
+        Follower f1 = FollowerConverter.toModel(fv);
+        Follower f = em.find(Follower.class, f1.getId());
         em.getTransaction().begin();
         em.remove(f);   //データ削除
         em.getTransaction().commit();
         em.close();
+
+    }
+    /**
+     * ログイン従業員、指定したフォロー従業員を条件に取得したデータをFollowerViewのインスタンスで返却する
+     * @param loginEmployeeログイン従業員
+     * @param followerEmployee指定したフォロー従業員
+     * @return 取得データのインスタンス 取得できない場合null
+     */
+    public FollowerView getFollowerMine(EmployeeView loginEmployee, EmployeeView ev){
+        Follower f = null;
+        try {
+
+            //ログイン従業員、指定したフォロー従業員を条件に未削除の従業員を1件取得する
+            f = em.createNamedQuery(JpaConst.Q_FOL_GET_FOL_MINE, Follower.class)
+                    .setParameter(JpaConst.JPQL_PARM_LOGIN_EMP,EmployeeConverter.toModel(loginEmployee))
+                    .setParameter(JpaConst.JPQL_PARM_FOLLOWER, EmployeeConverter.toModel(ev))
+                    .getSingleResult();
+
+        } catch (NoResultException ex) {
+        }
+
+        return FollowerConverter.toView(f);
 
     }
 }

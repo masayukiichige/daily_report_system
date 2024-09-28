@@ -112,5 +112,8 @@ public interface JpaConst {
     String Q_FOL_COUNT_FOL_MINE = ENTITY_FOL + ".countFollowerMine";
     String Q_FOL_COUNT_FOL_MINE_DEF = "SELECT COUNT(f) FROM Follower AS f WHERE f.loginEmployee = :" + JPQL_PARM_LOGIN_EMP + " AND f.followerEmployee = :" + JPQL_PARM_FOLLOWER;
 
+    //ログイン従業員、指定したフォロー従業員を条件に未削除の従業員を1件取得する
+    String Q_FOL_GET_FOL_MINE = ENTITY_FOL + ".getFollowerMine";
+    String Q_FOL_GET_FOL_MINE_DEF = "SELECT f FROM Follower AS f WHERE f.loginEmployee = :" + JPQL_PARM_LOGIN_EMP + " AND f.followerEmployee = :" + JPQL_PARM_FOLLOWER;
 
 }

@@ -109,7 +109,7 @@ public class FollowerAction extends ActionBase {
                 //putSessionScope(AttributeConst.FLUSH, MessageConst.I_REGISTERED.getMessage());
 
                 //一覧画面にリダイレクト
-                redirect(ForwardConst.ACT_FOL, ForwardConst.CMD_INDEX);
+                redirect(ForwardConst.ACT_EMP, ForwardConst.CMD_INDEX);
 
     }
     /**
@@ -171,20 +171,29 @@ public class FollowerAction extends ActionBase {
      */
     public void destroy() throws ServletException, IOException {
 
+        //セッションからログイン中の従業員情報を取得
+        EmployeeView loginEmployee = (EmployeeView) getSessionScope(AttributeConst.LOGIN_EMP);
 
-                //idを条件に従業員データを削除する
-                //service.destroy(toNumber(getRequestParam(AttributeConst.FOL_ID)));
-                FollowerView fv = service.findOne(toNumber(getRequestParam(AttributeConst.EMP_ID)));
-                service.destroy(fv);
+      //idを条件に従業員データを取得する
+        EmployeeService service2 = new EmployeeService();
+        EmployeeView ev = service2.findOne(toNumber(getRequestParam(AttributeConst.EMP_ID)));
+        service2.close();
 
+        if (ev == null || ev.getDeleteFlag() == AttributeConst.DEL_FLAG_TRUE.getIntegerValue()) {
+            //データが取得できなかった、または論理削除されている場合はエラー画面を表示
+                           forward(ForwardConst.FW_ERR_UNKNOWN);
+            return;
+        }
 
-                //セッションに削除完了のフラッシュメッセージを設定
-                putSessionScope(AttributeConst.FLUSH, MessageConst.I_DELETED.getMessage());
+        FollowerView fv = service.getFollowerMine(loginEmployee, ev);
 
+        service.destroy(fv);
 
+        //セッションに削除完了のフラッシュメッセージを設定
+        putSessionScope(AttributeConst.FLUSH, MessageConst.I_DELETED.getMessage());
 
-                //一覧画面にリダイレクト
-                redirect(ForwardConst.ACT_FOL, ForwardConst.CMD_INDEX);
+        //一覧画面にリダイレクト
+        redirect(ForwardConst.ACT_EMP, ForwardConst.CMD_INDEX);
 
 
         }

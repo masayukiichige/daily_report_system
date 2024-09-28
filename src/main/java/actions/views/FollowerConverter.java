@@ -65,8 +65,8 @@ public class FollowerConverter {
      */
     public static void copyViewToModel(Follower f, FollowerView fv) {
         fv.setId(fv.getId());
-        fv.setLoginEmployee(fv.getLoginEmployee());
-        fv.setFollowerEmployee(fv.getFollowerEmployee());
+        f.setLoginEmployee(EmployeeConverter.toModel(fv.getLoginEmployee()));
+        f.setFollowerEmployee(EmployeeConverter.toModel(fv.getFollowerEmployee()));
     }
 
 }

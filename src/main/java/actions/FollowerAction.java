@@ -124,22 +124,15 @@ public class FollowerAction extends ActionBase {
 
         EmployeeService service2 = new EmployeeService();
 
-        int page = getPage();
 
             //idを条件に従業員データを取得する
-        if(page ==1 ){
-            EmployeeView employee = service2.findOne(toNumber(getRequestParam(AttributeConst.EMP_ID)));
-            putSessionScope(AttributeConst.FOLLOWER_EMP, employee); //取得した従業員情報
-        }
-          //セッションからログイン中の従業員情報を取得
-            EmployeeView employee = (EmployeeView) getSessionScope(AttributeConst.FOLLOWER_EMP);
-
+                    EmployeeView employee = service2.findOne(toNumber(getRequestParam(AttributeConst.EMP_ID)));
+                    putRequestScope(AttributeConst.EMPLOYEE, employee); //取得した従業員情報
 
             service2.close();
 
           //フォロー中の従業員が作成した日報データを、指定されたページ数の一覧画面に表示する分取得する
-
-
+            int page = getPage();
             List<ReportView> reports = service1.getMinePerPage(employee, page);
 
             //フォロー中の従業員が作成した日報データの件数を取得
